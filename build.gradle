@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.1.2'
+		kotlinVersion = '1.1.2-2'
 		springBootVersion = '1.5.3.RELEASE'
 	}
 	repositories {
@@ -11,6 +11,10 @@ buildscript {
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
 	}
+}
+
+plugins {
+    id 'com.sourcemuse.mongo' version '1.0.0'
 }
 
 apply plugin: 'kotlin'
@@ -38,6 +42,12 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
 	compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+    compile('io.github.microutils:kotlin-logging:1.4.4')
+    compile 'org.hamcrest:java-hamcrest:2.0.0.0'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
+}
+
+bootRun {
+    runWithMongoDb = true
 }
